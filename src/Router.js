@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import News from "./pages/News";
 import Info from "./pages/Info"
 import LoginPage from "./pages/LoginPage";
+import { AuthContextProvider } from "./store/auth-context";
 // import your route components too
 
 const Router = () => {
   return (
     <>
+    <AuthContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,6 +19,7 @@ const Router = () => {
           <Route path="login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
+      </AuthContextProvider>
     </>
   );
 };
