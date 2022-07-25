@@ -23,13 +23,12 @@ const Header = (props) => {
           <Link to="/info">
             <Button onCheck={props.onCheck}>Info</Button>
           </Link>
-          {!ctx.isLoggedIn && (
+          {!ctx.isLoggedIn ? (
             <Link to="/login">
               <Button>Login</Button>
             </Link>
-          )}
-          {console.log("ctx.isLoggedIn=", ctx.isLoggedIn)}
-          {localStorage.getItem('isLoggedIn') === '1' ? <Button onClick={ctx.onLogout}>Logout</Button> : null}
+          ) : <Button onClick={ctx.onLogout}>Logout</Button>}
+
         </div>
       </header>
       <div className={classes["main-image"]}>

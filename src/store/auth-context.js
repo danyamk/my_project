@@ -22,7 +22,8 @@ export const AuthContextProvider = (props) => {
     setIsLoggedIn(false);
   };
 
-  const onLogin = () => {
+  const onLogin = (email, password) => {
+    console.log('email, password: ', email, password)
     localStorage.setItem('isLoggedIn', '1');
     setIsLoggedIn(true);
     console.log('loggedin=',isLoggedIn)
