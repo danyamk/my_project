@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Info from "./pages/Info"
+import LoginPage from "./pages/LoginPage";
 // import your route components too
 
 const Router = () => {
@@ -13,11 +14,7 @@ const Router = () => {
           <Route path="/" element={<Home />} />
           <Route path="news" element={<News />} />
           <Route path="info" element={<Info />} />
-          {/* <Route index element={<Home />} />
-          <Route path="teams" element={<Teams />} />
-          <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} /> */}
+          <Route path="login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </>

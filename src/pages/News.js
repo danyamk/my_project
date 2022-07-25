@@ -1,7 +1,7 @@
-import CheckModal from "../components/UI/CheckModal";
 import classes from "../components/Const/MainContect.module.css";
 import Card from "../components/UI/Card";
 import IGTSummary from "../components/Const/IGTSummary";
+import Header from "../components/Layout/Header";
 
 const DUMMY_DB_NEWS = [
   {
@@ -34,7 +34,7 @@ const News = () => {
 
   return (
     <>
-      <CheckModal />
+      <Header />
       <main>
         <IGTSummary>
           <p>There will be some news about our recording Studio and not only</p>

@@ -33,3 +33,29 @@ const Modal = (props) => {
 };
 
 export default Modal;
+
+// import { useContext, useState } from "react";
+
+// import Login from "../Login/Login";
+// import Header from "../Layout/Header";
+// import AuthContext from "../../store/auth-context";
+
+// const CheckModal = () => {
+//   const ctx = useContext(AuthContext);
+//   const [activeModal, setActiveModal] = useState(false);
+
+//   const showActiveModalHandler = () => {
+//     return setActiveModal(true);
+//   };
+
+//   const closeActiveModalHandler = () => {
+//     return setActiveModal(false);
+//   };
+
+//   return (
+//     <>
+//     </>
+//   );
+// };
+
+// export default CheckModal;

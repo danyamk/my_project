@@ -1,10 +1,10 @@
+import Header from "../components/Layout/Header";
 import Music from "../components/Music/Music";
-import CheckModal from "../components/UI/CheckModal";
 
 const Home = () => {
   return (
     <>
-      <CheckModal />
+      <Header />
       <main>
         <Music />
       </main>

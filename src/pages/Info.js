@@ -1,13 +1,13 @@
 import IGTSummary from "../components/Const/IGTSummary";
-import CheckModal from "../components/UI/CheckModal";
 import Card from "../components/UI/Card";
+import Header from "../components/Layout/Header";
 
 import classes from "../components/Const/MainContect.module.css";
 
 const Info = () => {
   return (
     <>
-      <CheckModal />
+      <Header />
       <main>
         <IGTSummary>
           <p>Here you can find any information about our recording Studio</p>

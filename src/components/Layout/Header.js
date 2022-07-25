@@ -1,31 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import SomeImage from "../../assets/Recording-Studio.jpg";
 import Button from "../UI/Button";
-import LoginButton from "../Login/LoginButton";
 import classes from "./Header.module.css";
 
+import AuthContext from "../../store/auth-context";
+
 const Header = (props) => {
+  const ctx = useContext(AuthContext);
+
   return (
     <>
       <header className={classes.header}>
         <Link to="/">
-          <Button>IGT</Button>
+          <Button onCheck={props.onCheck}>IGT</Button>
         </Link>
         <div>
           <Link to="/news">
-            <Button>News</Button>
+            <Button onCheck={props.onCheck}>News</Button>
           </Link>
           <Link to="/info">
-            <Button>Info</Button>
+            <Button onCheck={props.onCheck}>Info</Button>
           </Link>
-          {props.isAuthenticated && (
-            <LoginButton onClick={props.onOpen}>Login</LoginButton>
+          {!ctx.isLoggedIn && (
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
           )}
-          {!props.isAuthenticated && (
-            <Button>Hi</Button>
-          )}
+          {console.log("ctx.isLoggedIn=", ctx.isLoggedIn)}
+          {localStorage.getItem('isLoggedIn') === '1' ? <Button onClick={ctx.onLogout}>Logout</Button> : null}
         </div>
       </header>
       <div className={classes["main-image"]}>
