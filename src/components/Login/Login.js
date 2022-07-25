@@ -52,25 +52,15 @@ const Login = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  useEffect(() => {
-    console.log('EFFECT RUNNING');
-
-    return () => {
-      console.log('EFFECT CLEANUP');
-    };
-  }, []);
-
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log('Checking form validity!');
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
-      console.log('CLEANUP');
       clearTimeout(identifier);
     };
   }, [emailIsValid, passwordIsValid]);
@@ -92,10 +82,8 @@ const Login = (props) => {
   };
 
   const submitHandler = (event) => {
-    authCtx.onLogin(emailState.value, passwordState.value);
-    console.log('authCtx', authCtx)
     if (formIsValid) {
-      
+      authCtx.onLogin(emailState.value, passwordState.value);
     } else if (!emailIsValid) {
       emailInputRef.current.focus();
     } else {
