@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import AuthContext from "../../store/auth-context";
+
 import SomeImage from "../../assets/Recording-Studio.jpg";
 import Button from "../UI/Button";
+
+import buttonClasses from "../UI/Button.module.css";
 import classes from "./Header.module.css";
 
-import AuthContext from "../../store/auth-context";
 
 const Header = (props) => {
   const ctx = useContext(AuthContext);
@@ -23,12 +26,12 @@ const Header = (props) => {
           <Link to="/info">
             <Button onCheck={props.onCheck}>Info</Button>
           </Link>
-          {!ctx.isLoggedIn ? (
+          {!ctx.isLoggedIn && (
             <Link to="/login">
               <Button>Login</Button>
             </Link>
-          ) : <Button onClick={ctx.onLogout}>Logout</Button>}
-
+          )}
+          {ctx.isLoggedIn && <button className={buttonClasses.button} onClick={ctx.onLogout}>Logout</button>}
         </div>
       </header>
       <div className={classes["main-image"]}>
@@ -39,10 +42,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-//   <li>
-//   <Button href="/">Add your post</Button>
-// </li>
-// <li>
-//   <Button onClick={props.onLogout}>Logout</Button>
-// </li>

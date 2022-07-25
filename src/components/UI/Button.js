@@ -8,7 +8,6 @@ const Button = ({ lineStyle = {}, type='button', children }) => {
       style={lineStyle}
       type={type}
       className={classes.button}
-      disabled={children.disabled}
       onClick={children.onClick}
     >
       {children}

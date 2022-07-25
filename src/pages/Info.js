@@ -17,7 +17,9 @@ const Info = () => {
             <h1>
               We are located at: <small>adress</small>
             </h1>
-            <h1>Number: <small>number</small></h1>
+            <h1>
+              Number: <small>number</small>
+            </h1>
           </Card>
         </section>
       </main>
