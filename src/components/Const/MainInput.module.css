@@ -1,5 +1,12 @@
-.control {
-    margin: 0.5rem 0;
+.maininput{
+    width: 90%;
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+  
+  .control {
+    margin: 1rem 0;
     display: flex;
     align-items: stretch;
     flex-direction: column;
@@ -21,7 +28,7 @@
     flex: 3;
     font: inherit;
     padding: 0.35rem 0.35rem;
-    border-radius: 30px;
+    border-radius: 6px;
     border: 1px solid #ccc;
   }
   
@@ -36,9 +43,14 @@
     background: #fbdada;
   }
   
+  .actions {
+    text-align: center;
+  }
+  
   @media (min-width: 768px) {
     .control {
       align-items: center;
       flex-direction: row;
     }
+  
   }

@@ -4,46 +4,45 @@ import React, {
   useReducer,
   useContext,
   useRef,
-} from 'react';
+} from "react";
 import { useNavigate } from "react-router-dom";
 
-import Card from '../UI/Card';
-import Button from '../UI/Button';
-import AuthContext from '../../store/auth-context';
-import Input from '../UI/Input';
-import classes from './Login.module.css';
+import Card from "../UI/Card";
+import Button from "../UI/Button";
+import AuthContext from "../../store/auth-context";
+import Input from "../UI/Input";
+import classes from "../Const/MainInput.module.css";
 
 const emailReducer = (state, action) => {
-  if (action.type === 'USER_INPUT') {
-    return { value: action.val, isValid: action.val.includes('@') };
+  if (action.type === "USER_INPUT") {
+    return { value: action.val, isValid: action.val.includes("@") };
   }
-  if (action.type === 'INPUT_BLUR') {
-    return { value: state.value, isValid: state.value.includes('@') };
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: state.value.includes("@") };
   }
-  return { value: '', isValid: false };
+  return { value: "", isValid: false };
 };
 
 const passwordReducer = (state, action) => {
-  if (action.type === 'USER_INPUT') {
+  if (action.type === "USER_INPUT") {
     return { value: action.val, isValid: action.val.trim().length > 6 };
   }
-  if (action.type === 'INPUT_BLUR') {
+  if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: state.value.trim().length > 6 };
   }
-  return { value: '', isValid: false };
+  return { value: "", isValid: false };
 };
 
-
 const Login = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
-    value: '',
+    value: "",
     isValid: null,
   });
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-    value: '',
+    value: "",
     isValid: null,
   });
 
@@ -66,19 +65,19 @@ const Login = (props) => {
   }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
-    dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
+    dispatchEmail({ type: "USER_INPUT", val: event.target.value });
   };
 
   const passwordChangeHandler = (event) => {
-    dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
+    dispatchPassword({ type: "USER_INPUT", val: event.target.value });
   };
 
   const validateEmailHandler = () => {
-    dispatchEmail({ type: 'INPUT_BLUR' });
+    dispatchEmail({ type: "INPUT_BLUR" });
   };
 
   const validatePasswordHandler = () => {
-    dispatchPassword({ type: 'INPUT_BLUR' });
+    dispatchPassword({ type: "INPUT_BLUR" });
   };
 
   const submitHandler = (event) => {
@@ -89,11 +88,11 @@ const Login = (props) => {
     } else {
       passwordInputRef.current.focus();
     }
-    navigate('/');
+    navigate("/");
   };
 
   return (
-    <Card className={classes.login}>
+    <Card className={classes.maininput}>
       <form onSubmit={submitHandler}>
         <Input
           ref={emailInputRef}
@@ -116,7 +115,11 @@ const Login = (props) => {
           onBlur={validatePasswordHandler}
         />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} lineStyle={{color: 'black'}}>
+          <Button
+            type="submit"
+            className={classes.btn}
+            lineStyle={{ color: "black" }}
+          >
             Login
           </Button>
         </div>
