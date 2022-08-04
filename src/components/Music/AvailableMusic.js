@@ -6,7 +6,7 @@ import { useContext } from "react";
 const AvailableMusic = () => {
   const ctx_db = useContext(PostContext);
 
-  const musicList = ctx_db.postList.map((music) => (
+  const musicList = ctx_db.state.map((music) => (
     <li key={music.key}>
       <Card>
         <h1>{music.artist}</h1>

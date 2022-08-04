@@ -3,9 +3,15 @@ import { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import PostContext from "../../store/dummy_db-context";
 import classes from "../Const/MainInput.module.css";
 
 const CreatePost = (props) => {
+  const ctx_db = useContext(PostContext);
+
+  const navigate = useNavigate();
   const [enteredArtist, setEnteredArtist] = useState("");
   const [enteredNameTrack, setNameTrack] = useState("");
   const [enteredBio, setBio] = useState("");
@@ -18,7 +24,17 @@ const CreatePost = (props) => {
     ) {
       return;
     }
-    props.onAddPost(enteredArtist, enteredNameTrack, enteredBio);
+    // props.onAddPost(enteredArtist, enteredNameTrack, enteredBio);
+    ctx_db.dispatch({
+      type: "CREATE_POST",
+      payload: {
+        uArtist: enteredArtist,
+        uName_track: enteredNameTrack,
+        uBio: enteredBio,
+      },
+    });
+    console.log(ctx_db);
+    navigate("/");
     setEnteredArtist("");
     setNameTrack("");
     setBio("");

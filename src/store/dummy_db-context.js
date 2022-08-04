@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 
 export const DUMMY_DB = [
   {
@@ -39,32 +39,36 @@ export const DUMMY_DB = [
 ];
 
 const PostContext = React.createContext({
-  onCreate: (uArtist, uNameTrack, uBio) => {},
+  state: [],
+  dispatch: (Artist, Name_Track, Bio) => {},
 });
 
-export const CreatePostProvider = (props) => {
-  const [postList, setPostList] = useState(DUMMY_DB);
-
-  const CreatePostHandler = (uArtist, uName_Track, uBio) => {
-    setPostList((prevPostList) => {
+const myreducer = (state, action) => {
+  switch (action.type) {
+    case "CREATE_POST":
       return [
-        ...prevPostList,
+        ...state,
         {
-          artist: uArtist,
-          name_track: uName_Track,
-          bio: uBio,
+          artist: action.payload.uArtist,
+          name_track: action.payload.uName_Track,
+          bio: action.payload.uBio,
           id: Math.random().toString(),
           key: Math.random().toString(),
         },
       ];
-    });
-  };
+    default:
+      return state;
+  }
+};
+
+export const CreatePostProvider = (props) => {
+  const [state, dispatch] = useReducer(myreducer, DUMMY_DB);
 
   return (
     <PostContext.Provider
       value={{
-        onCreate: CreatePostHandler,
-        postList,
+        dispatch,
+        state,
       }}
     >
       {props.children}
