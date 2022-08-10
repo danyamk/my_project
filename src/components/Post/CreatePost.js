@@ -24,16 +24,14 @@ const CreatePost = (props) => {
     ) {
       return;
     }
-    // props.onAddPost(enteredArtist, enteredNameTrack, enteredBio);
     ctx_db.dispatch({
       type: "CREATE_POST",
       payload: {
         uArtist: enteredArtist,
-        uName_track: enteredNameTrack,
+        uName_Track: enteredNameTrack,
         uBio: enteredBio,
       },
     });
-    console.log(ctx_db);
     navigate("/");
     setEnteredArtist("");
     setNameTrack("");

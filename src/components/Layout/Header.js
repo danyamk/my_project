@@ -1,18 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
 import AuthContext from "../../store/auth-context";
-import ModalContext from "../../store/modal-context";
 
 import SomeImage from "../../assets/Recording-Studio.jpg";
 import Button from "../UI/Button";
+import "./Modal.css";
 
 import buttonClasses from "../UI/Button.module.css";
 import classes from "./Header.module.css";
+import Login from "../Login/Login";
+import CreatePost from "../Post/CreatePost";
 
 const Header = (props) => {
   const ctx = useContext(AuthContext);
-  const modal_ctx = useContext(ModalContext);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  Modal.setAppElement(document.getElementById("root"));
 
   return (
     <>
@@ -27,19 +40,37 @@ const Header = (props) => {
           <Link to="/info">
             <Button onCheck={props.onCheck}>Info</Button>
           </Link>
-          <Link to="/login">{!ctx.isLoggedIn && <Button>Login</Button>}</Link>
-          {ctx.isLoggedIn && !modal_ctx.activeModal && (
+          {!ctx.isLoggedIn ? (
+            <>
+              <Button onClick={openModal}>Login</Button>{" "}
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                className="Modal"
+                overlayClassName="Overlay"
+              >
+                <Login onClose={closeModal} />
+              </Modal>
+            </>
+          ) : null}
+          {ctx.isLoggedIn ? (
             <div>
-              <Link to="/create_post">
-                <Button onCheck={props.onCheck}>Create Post</Button>
-              </Link>
+              <Button onClick={openModal}>Create Post</Button>
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                className="Modal"
+                overlayClassName="Overlay"
+              >
+                <CreatePost />
+              </Modal>
               <Link to="/">
-              <button className={buttonClasses.button} onClick={ctx.onLogout}>
-                Logout
-              </button>{" "}
+                <Button className={buttonClasses.button} onClick={ctx.onLogout}>
+                  Logout
+                </Button>{" "}
               </Link>
             </div>
-          )}
+          ) : null}
         </div>
       </header>
       <div className={classes["main-image"]}>

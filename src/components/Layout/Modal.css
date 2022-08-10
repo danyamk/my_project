@@ -1,4 +1,4 @@
-.backdrop {
+ .Overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,11 +8,11 @@
     background-color: rgba(0, 0, 0, 0.75);
   }
   
-  .modal {
+  .Modal {
     position: fixed;
     top: 20vh;
-    left: 5%;
-    width: 90%;
+    left: 35%;
+    width: 30%;
     background-color: white;
     padding: 1rem;
     border-radius: 14px;
@@ -37,4 +37,4 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
+  } 

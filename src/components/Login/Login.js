@@ -5,7 +5,6 @@ import React, {
   useContext,
   useRef,
 } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -34,7 +33,6 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
-  const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -83,48 +81,48 @@ const Login = (props) => {
   const submitHandler = (event) => {
     if (formIsValid) {
       authCtx.onLogin(emailState.value, passwordState.value);
+      props.onClose();
     } else if (!emailIsValid) {
       emailInputRef.current.focus();
     } else {
       passwordInputRef.current.focus();
     }
-    navigate("/");
   };
 
   return (
-    <Card className={classes.maininput}>
-      <form onSubmit={submitHandler}>
-        <Input
-          ref={emailInputRef}
-          id="email"
-          label="E-Mail"
-          type="email"
-          isValid={emailIsValid}
-          value={emailState.value}
-          onChange={emailChangeHandler}
-          onBlur={validateEmailHandler}
-        />
-        <Input
-          ref={passwordInputRef}
-          id="password"
-          label="Password"
-          type="password"
-          isValid={passwordIsValid}
-          value={passwordState.value}
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-        />
-        <div className={classes.actions}>
-          <Button
-            type="submit"
-            className={classes.btn}
-            lineStyle={{ color: "black" }}
-          >
-            Login
-          </Button>
-        </div>
-      </form>
-    </Card>
+      <Card className={classes.maininput}>
+        <form onSubmit={submitHandler}>
+          <Input
+            ref={emailInputRef}
+            id="email"
+            label="E-Mail"
+            type="email"
+            isValid={emailIsValid}
+            value={emailState.value}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+          />
+          <Input
+            ref={passwordInputRef}
+            id="password"
+            label="Password"
+            type="password"
+            isValid={passwordIsValid}
+            value={passwordState.value}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          />
+          <div className={classes.actions}>
+            <Button
+              type="submit"
+              className={classes.btn}
+              lineStyle={{ color: "black" }}
+            >
+              Login
+            </Button>
+          </div>
+        </form>
+      </Card>
   );
 };
 
