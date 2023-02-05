@@ -120,6 +120,13 @@ const Login = (props) => {
             >
               Login
             </Button>
+            <Button
+              type="submit"
+              className={classes.btn}
+              lineStyle={{ color: "black" }}
+            >
+              Register
+            </Button>
           </div>
         </form>
       </Card>
