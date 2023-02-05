@@ -1,5 +1,5 @@
 .login {
-  width: 90%;
+  width: 50%;
   max-width: 40rem;
   margin: 2rem auto;
   padding: 2rem;
@@ -45,6 +45,7 @@
 
 .actions {
   text-align: center;
+  padding-left: 200px;
 }
 
 @media (min-width: 768px) {
